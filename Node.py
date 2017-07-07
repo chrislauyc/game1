@@ -1,4 +1,4 @@
-ass Node(object):
+class Node(object):
 
     def __init__(self, data=None, next_node=None, prev_node=None):
         self.data = data
@@ -16,6 +16,3 @@ ass Node(object):
 
     def set_next(self, new_next):
         self.next_node = new_next
-   
-    def set_prev(self, new_prev):
-	self.prev_node = new_prev
