@@ -1,4 +1,5 @@
 import random
+import GUI.py
 
 class Board:
 	def __init__(self):
