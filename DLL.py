@@ -1,29 +1,45 @@
-#include "DLLInterface.h"
-#include "LinkedList.h"
-#include <string>
-#include <fstream>
-#include <sstream>
-#include <iostream>
-#include <cstring>
-using namespace std;
+class DoubleLinkedList(object):
+    def __init__(self, head=None):
+        self.head = head
 
-class DLL: public DLLInterface
-{
-public:
-	DLL(){}
-	~DLL(){}
+def insert(self, data):
+    new_node = Node(data)
+    new_node.set_next(self.head)
+    self.head = new_node
 
-	/**
-	* Adds the given name to the end of the list so that at(-1) == name.
-	* After the operation, the size should have increased by 1..
-	*/
-	bool insertTail(string name);
+def size(self):
+    current = self.head
+    count = 0
+    while current:
+        count += 1
+        current = current.get_next()
+    return count
+	
+def search(self, data):
+    current = self.head
+    found = False
+    while current and found is False:
+        if current.get_data() == data:
+            found = True
+        else:
+            current = current.get_next()
+    if current is None:
+        raise ValueError("Data not in list")
+    return current
 
-	/**
-	* Removes all nodes from the list.
-	* size() should return 0 after this operation.
-	*/
-	void clear();
-
-};
-
+def delete(self, data):
+    current = self.head
+    previous = None
+    found = False
+    while current and found is False:
+        if current.get_data() == data:
+            found = True
+        else:
+            previous = current
+            current = current.get_next()
+    if current is None:
+        raise ValueError("Data not in list")
+    if previous is None:
+        self.head = current.get_next()
+    else:
+        previous.set_next(current.get_next())

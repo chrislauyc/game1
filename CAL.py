@@ -1,5 +1,6 @@
 import random
 import GUI
+
 class Board:
 	def __init__(self):
 		self.DLL = '' #need to create a DLL 
