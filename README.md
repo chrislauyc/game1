@@ -13,4 +13,9 @@ Work to be done:
 --> GUI in pygame
 --> underlying code
 
+tree:
 
+CAL.py -->GUI.py
+CAL.py -->DLL.py
+main.py -->GUI.py
+main.py -->CAL.py
