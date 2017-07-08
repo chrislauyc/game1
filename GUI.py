@@ -16,9 +16,11 @@ class GUI:
 				if event.type == pygame.QUIT:
 					done = True
 				pygame.display.flip()
-	def roll_dice():
-		#display dice and return the result of click event
-		return
+	def display_dice():
+		#display dice 
 		
+		#if click event, return true. else, return false
+		return
+
 
 
