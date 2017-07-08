@@ -16,11 +16,13 @@ class GUI:
 				if event.type == pygame.QUIT:
 					done = True
 				pygame.display.flip()
-	def display_dice():
+	def display_dice(face):
 		#display dice 
 		
 		#if click event, return true. else, return false
 		return
 
+
+	#need a map of integers to pair of xy coordinates
 
 
