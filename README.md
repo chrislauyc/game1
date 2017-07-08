@@ -1,8 +1,8 @@
-# Chutes and Ladders game
+# game1
 
 Theme of the game:
 
-chutes and ladders!!!
+shoots and ladders!!!
 
 How the game works:
 
