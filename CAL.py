@@ -12,7 +12,7 @@ class Player:
 	def __init__(self, name_in):
 		self.name = name_in
 		self.at_node = 0
-	def change_node(node_in):
+	def move_player(node_in): #move the player
 		self.at_node = node_in
 		
 
@@ -45,20 +45,30 @@ class Dice:
 	def get_roll(): #return output of roll
 		return self.roll_output
 def Run_board(board_in):
-	
-	#have the players take turn to roll dice
 	turns = 0
 	winner = False
+	my_dice = Dice()
+	
 	while winner == False: 
-		#roll the dice and display it in GUI
+		
+		for player in board_in.players: 
+			#have the players take turn to roll dice
+			my_dice.roll() 
+			#roll the dice and display it in GUI
+			while !(GUI.display_dice(my_dice.get_roll)) #while no clicking
+				my_dice.roll()
 			#receive the result of the roll
-		#move the players
-		for player in board_in.players:
-			if player.at_node == 100:
+			roll_result = my_dice.get_roll()	
+			#move the players
+			new_position = roll_result + player.at_node
+			player.move_player(new_position) #would be great to move the player one by one through the list for a better visual effect
+				#move the players through the nodes
+				#moving display in GUI
+			if player.at_node == 100: #check if there is winner
 				winner = True
 				break
+		turns += 1
 		
-		
-	#end game	
+	#end game. would be great to display the winner
 		
 	pass
