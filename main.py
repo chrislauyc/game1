@@ -1,5 +1,5 @@
-import Node, GUI
-def main():
+import Node, GUI, CAL
+'''def main():
 	# my code here
 	#menu
 	print "menu (please select an option)"
@@ -16,4 +16,20 @@ def main():
 
 if __name__ == "__main__":
 	main()
+
+'''
+
+#testing GUI.py and CAL.py
+myCAL = CAL.CAL()
+myCAL.Create_board()
+myGUI = GUI.GUI()
+myCAL.Set_GUI(myGUI)#so that myCAL can use the same GUI object
+myGUI.Power_GUI()
+done = False
+while (done == False):
+	done = myGUI.Run_GUI(done)
+	myCAL.Run_board()
+	
+
+
 
