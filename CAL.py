@@ -5,7 +5,7 @@ class Player:
 		self.name = name_in
 		self.at_node = 0
 	def move_player(self, node_in): #move the player
-		self.at_node = node_in
+		self.at_node = node_in #add options to move later also allow back or forward movement
 		
 
 
@@ -69,5 +69,7 @@ class CAL:
 		this_board.add_player(player3)
 		player4 = Player('Meredith')
 		this_board.add_player(player4)
-		self.myBoard = this_board	
+		self.myBoard = this_board
+		print(len(self.myBoard. players))
+		self.myGUI.display_players(self.myBoard.players)
 		
