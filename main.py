@@ -22,9 +22,9 @@ if __name__ == "__main__":
 #testing GUI.py and CAL.py
 myCAL = CAL.CAL()
 myGUI = GUI.GUI()
-myCAL.Create_board()
-myCAL.Set_GUI(myGUI)#so that myCAL can use the same GUI object
-myGUI.Power_GUI()
+
+myCAL.Create_board(myGUI)
+
 done = False
 while (done == False):
 	done = myGUI.Run_GUI(done)

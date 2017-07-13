@@ -5,7 +5,7 @@ class GUI:
 	def __init__(self):
 		self.bg = '' #background
 		self.screen = ''
-		
+		self.Power_GUI()
 	def Run_GUI(self, is_done): # the main will loop through this chunk of code
 		BLACK = (000,000,000)
 		self.screen.fill(BLACK)
@@ -30,9 +30,9 @@ class GUI:
 		img = pygame.image.load('Chutes&Ladders1.gif')
 		img = pygame.transform.scale(img, (650,658))
 		self.bg = img
-		return
+		
 
-	def display_players(self, players): #Takes CAL's players array
+	def Display_players(self, players): #Takes CAL's players array
 		myfont = pygame.font.SysFont("monospace", 16)
 		x = 50
 		y = 250
@@ -42,15 +42,15 @@ class GUI:
 		height = 0
 		
 		for player in players:
-			playertext = myfont.render(player, 1, (x,y,z))#color
+			playertext = myfont.render(player.name, 1, (x,y,z))#color
 			self.screen.blit(playertext, (width, height))
 			
 			x = x + 50
-			y = y + 50
+			y = y - 50
 			
 			height = height + 100
                     
-	def display_dice(self, roll_result):	
+	def Display_dice(self, roll_result):	
 		myfont = pygame.font.SysFont("monospace", 30)
 		dice = myfont.render(str(roll_result), 1, (50,250,0))
 		self.screen.blit(dice, (725, 550))

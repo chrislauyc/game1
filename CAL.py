@@ -23,16 +23,11 @@ class CAL:
 	def __init__(self):
 		self.myGUI = ''
 		self.myBoard = ''
-		
-	def Set_GUI(self, in_GUI):
-		self.myGUI = in_GUI
 	def Run_board(self):
 		turns = 0
 		winner = False
 		my_dice = Dice()
-		
 		while winner == False: 
-			
 			for player in self.myBoard.players: 
 				#have the players take turn to roll dice
 				my_dice.roll() 
@@ -53,10 +48,11 @@ class CAL:
 			
 			
 		#end game. would be great to display the winner
-	def Create_board(self):
+	def Create_board(self, in_GUI):
 		#implement the construction of randomly generated board
 		#create board. Do this later
 		#create players
+		self.myGUI = in_GUI
 		this_board = Board()
 		player1 = Player('Nicole')
 		this_board.add_player(player1)
@@ -68,5 +64,5 @@ class CAL:
 		this_board.add_player(player4)
 		self.myBoard = this_board
 		print(len(self.myBoard. players))
-		self.myGUI.display_players(self.myBoard.players)
+		self.myGUI.Display_players(self.myBoard.players)
 		
