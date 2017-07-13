@@ -31,8 +31,26 @@ class GUI:
 		img = pygame.transform.scale(img, (650,658))
 		self.bg = img
 		return
-	def Display_dice(self, roll_result):
+
+	def display_players(self, players): #Takes CAL's players array
+		myfont = pygame.font.SysFont("monospace", 16)
+		x = 50
+		y = 250
+		z = 0
 		
+		width = 650
+		height = 0
+		
+		for player in players:
+			playertext = myfont.render(player, 1, (x,y,z))#color
+			self.screen.blit(playertext, (width, height))
+			
+			x = x + 50
+			y = y + 50
+			
+			height = height + 100
+                    
+	def display_dice(self, roll_result):	
 		myfont = pygame.font.SysFont("monospace", 30)
 		dice = myfont.render(str(roll_result), 1, (50,250,0))
 		self.screen.blit(dice, (725, 550))
