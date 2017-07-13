@@ -6,9 +6,6 @@ class Player:
 		self.at_node = 0
 	def move_player(self, node_in): #move the player
 		self.at_node = node_in
-		
-
-
 class Board:
 	def __init__(self):
 		self.players = []
@@ -40,7 +37,7 @@ class CAL:
 				#have the players take turn to roll dice
 				my_dice.roll() 
 				#roll the dice and display it in GUI
-				while ((self.myGUI.display_dice(my_dice.get_roll())) == False): #while no clicking
+				while ((self.myGUI.Display_dice(my_dice.get_roll())) == False): #while no clicking
 					my_dice.roll()
 				#receive the result of the roll
 				roll_result = my_dice.get_roll()	
