@@ -1,17 +1,16 @@
 class Node(object):
 
-    def __init__(self, data=None, next_node=None, prev_node=None):
-		self.data = data
-		self.next_node = next_node
-		self.prev_node = prev_node
+    def __init__(self, data=0, x_coord=0, y_coord=0):
+        self.data = data
+        self.x = x_coord
+        self.y = y_coord
+        
     def get_data(self):
         return self.data
 
-    def get_next(self):
-        return self.next_node
+    def get_x(self):
+        return self.x
 
-    def get_prev(self):
-		return self.prev_node
+    def get_y(self):
+        return self.y
 
-    def set_next(self, new_next):
-        self.next_node = new_next

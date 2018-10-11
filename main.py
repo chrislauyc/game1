@@ -1,4 +1,4 @@
-import Node, GUI, CAL
+import GUI, CAL
 '''def main():
 	# my code here
 	#menu
@@ -19,17 +19,11 @@ if __name__ == "__main__":
 
 '''
 
-#testing GUI.py and CAL.py
 myCAL = CAL.CAL()
-myGUI = GUI.GUI()
+myCAL.Create_board()
+myCAL.Run_board()
+myCAL.End_Game()
 
-myCAL.Create_board(myGUI)
-
-done = False
-while (done == False):
-	done = myGUI.Run_GUI(done)
-	myCAL.Run_board()
-	
 
 
 
