@@ -7,7 +7,28 @@ class GUI:
         self.bg = '' #background
         self.screen = ''
         self.Power_GUI()
-        
+    def Start_screen(self):
+        BLACK = (000,000,000)
+        self.screen.fill(BLACK)
+        myfont = pygame.font.SysFont("monospace", 15)
+        label = myfont.render("Press enter to start",1,(250,250,0))
+        self.screen.blit(label,(300,300))
+        pygame.display.flip()
+    def Player_menu(self,players,display_text="",input_text="",player_i = 0):
+        BLACK = (000,000,000)
+        self.screen.fill(BLACK)
+        myfont = pygame.font.SysFont("monospace", 15)
+        w = 675
+        h = 0
+        pygame.draw.circle(self.screen, (0,250,250), [w-15, h+7+100*player_i], 10)
+        for player in players:
+            player_text = myfont.render(player.name,1,(0,250,150))
+            self.screen.blit(player_text,(w,h))
+            h += 100
+        label = myfont.render(display_text,1,(250,250,0))
+        self.screen.blit(label,(200,300))
+        self.Display_input(input_text)
+        pygame.display.flip()
     def Run_GUI(self, players, curplayer, board): # the main will loop through this chunk of code
         BLACK = (000,000,000)
         self.screen.fill(BLACK)
@@ -79,3 +100,13 @@ class GUI:
         print(winner + " is the winner!")
         time.sleep(5)
         sys.exit()
+    def Display_input(self,text): #used to display typed string
+        myfont = pygame.font.SysFont("monospace", 15)
+        label = myfont.render(text,1,(250,250,0))
+        self.screen.blit(label, (300,400))
+        pygame.display.flip()
+    def Display_output(self,text): #used to display response of the program
+        myfont = pygame.font.SysFont("monospace", 15)
+        label = myfont.render(text,1, (250,250,0))
+        self.screen.blit(label,(300,330))
+        pygame.display.flip()

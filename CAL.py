@@ -85,7 +85,7 @@ class CAL:
         self.myGUI = GUI.GUI()
         self.myBoard = ''
         self.my_dice = Dice()
-        
+
     def Handle_events(self, event, player):
         if event.type == pygame.QUIT:
             pygame.quit()
@@ -108,14 +108,69 @@ class CAL:
                     player.move_player(self.myBoard.board[player.at_node].get_data())
                 if player.at_node > 100:
                     player.move_player(100)
-                
         return
-    
+    def Handle_start_events(self,event,players,event_state,input_text,player_i): # hangle events in the start screens
+        start_message = "press \"P\" to add a player, \"R\" to remove a player,\"s\" to start"
+        if event.type == pygame.QUIT:
+            pygame.quit()
+            exit()
+        if event.type == pygame.KEYDOWN:
+            if event_state == "menu":
+                if event.key == pygame.K_p:#add new player
+                    if len(players) < 4:
+                        event_state = "new player"
+                        self.myGUI.Player_menu(self.myBoard.players,"please enter name below:","__________",player_i)
+                    else:
+                        self.myGUI.Player_menu(self.myBoard.players,"Max players reached","",player_i)
+                elif event.key == pygame.K_s:#s to start and exit start menu
+                    if len(players) > 1:
+                        event_state = "game"
+                    else:
+                        self.myGUI.Player_menu(self.myBoard.players,"At least 2 players are needed to play the game.","",player_i)
+                elif event.key == pygame.K_UP:#select player
+                    if player_i > 0:
+                        player_i-=1
+                        self.myGUI.Player_menu(self.myBoard.players,start_message,"",player_i)
+                elif event.key == pygame.K_DOWN:#select player
+                    if player_i < len(players)-1:
+                        player_i+=1
+                        self.myGUI.Player_menu(self.myBoard.players,start_message,"",player_i)
+                elif event.key == pygame.K_r:#remove selected player
+                    if len(players) > 0:
+                        name = players[player_i].name
+                        del players[player_i]
+                        player_i = 0
+                        self.myGUI.Player_menu(self.myBoard.players,"Player "+name+" is removed.","",0)
+                elif event.key == pygame.K_RETURN:#return to initial screen
+                    self.myGUI.Player_menu(self.myBoard.players,start_message,"",player_i)
+            elif event_state =="new player":#capture typed text
+                if event.key == pygame.K_RETURN:#enter player name
+                    self.myBoard.add_player(Player(input_text))
+                    self.myGUI.Player_menu(self.myBoard.players,"Player \""+input_text+"\" is added.","",player_i)
+                    event_state = "menu"
+                    input_text = ""
+                elif event.key == pygame.K_BACKSPACE:#backspace
+                    input_text = input_text[:-1]
+                    self.myGUI.Player_menu(self.myBoard.players,"please enter name below",input_text,player_i)
+                else:#typing
+                    input_text += event.unicode
+                    self.myGUI.Player_menu(self.myBoard.players,"please enter name below",input_text,player_i)
+            elif event.key == pygame.K_RETURN and event_state == "start":
+                event_state = "menu"
+                self.myGUI.Player_menu(self.myBoard.players,start_message,"",player_i)
+        return event_state,input_text,player_i
     def Run_board(self):#this is the main game loop and GUI loop
         pygame.event.set_allowed(None)
         pygame.event.set_allowed(pygame.KEYDOWN)
         pygame.event.set_allowed(pygame.QUIT)
         turns = 0
+        self.myGUI.Start_screen()
+        event_state = "start"
+        input_text = ""
+        player_i = 0
+        while event_state != "game":#still in start menu
+            event = pygame.event.wait()
+            [event_state,input_text,player_i] = self.Handle_start_events(event,self.myBoard.players,event_state,input_text,player_i)
         while True:
             for player in self.myBoard.players:
                 self.Take_Turn(player)
