@@ -1,4 +1,4 @@
-import random, GUI, Node, pygame, numpy
+import random, GUI, Node, pygame, numpy, time
 
 class Player:
     def __init__(self, name_in):
@@ -10,6 +10,7 @@ class Board:
     def __init__(self):
         self.board = numpy.empty(100, dtype=object)
         self.players = []
+        self.mini_games = ["Tank"] #will add more games in the future
     def add_player(self, player_in):
         self.players.append(player_in)
     def load_board(self):
@@ -60,8 +61,13 @@ class Board:
                     data = 75
                 elif k == 98:
                     data = 78
-                
-                self.board[k] = Node.Node(data, x_coord, y_coord)
+                #there is a 10% chance getting a minigame in a node
+                #then, randomly choose from the list of minigames
+                if random.randrange(100) > 90:
+                    minigame = self.mini_games[random.randrange(len(self.mini_games))]
+                else:
+                    minigame = ""
+                self.board[k] = Node.Node(data, x_coord, y_coord,minigame) #the board is an array of Nodes, which contain coord and C&L moves
                  #increment position
                 if j ==0:
                     y_coord -= 658//10
@@ -171,6 +177,7 @@ class CAL:
         while event_state != "game":#still in start menu
             event = pygame.event.wait()
             [event_state,input_text,player_i] = self.Handle_start_events(event,self.myBoard.players,event_state,input_text,player_i)
+            time.sleep(0.01)
         while True:
             for player in self.myBoard.players:
                 self.Take_Turn(player)

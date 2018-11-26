@@ -1,4 +1,4 @@
-import GUI, CAL
+import CAL
 '''def main():
 	# my code here
 	#menu

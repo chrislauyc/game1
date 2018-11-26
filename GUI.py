@@ -1,12 +1,11 @@
-import pygame, sys
-from pygame.locals import *
-import time
+import pygame, sys, time
 
 class GUI:
     def __init__(self):
         self.bg = '' #background
         self.screen = ''
         self.Power_GUI()
+        self.Player_pieces = []
     def Start_screen(self):
         BLACK = (000,000,000)
         self.screen.fill(BLACK)
@@ -104,9 +103,4 @@ class GUI:
         myfont = pygame.font.SysFont("monospace", 15)
         label = myfont.render(text,1,(250,250,0))
         self.screen.blit(label, (300,400))
-        pygame.display.flip()
-    def Display_output(self,text): #used to display response of the program
-        myfont = pygame.font.SysFont("monospace", 15)
-        label = myfont.render(text,1, (250,250,0))
-        self.screen.blit(label,(300,330))
         pygame.display.flip()
